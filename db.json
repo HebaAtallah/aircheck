@@ -1,0 +1,54 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "username": "karim",
+      "email": "karim@example.com"
+    },
+    {
+      "id": 2,
+      "username": "heba",
+      "email": "heba@example.com"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "karim",
+      "age": 24,
+      "gender": "M",
+      "diseases": []
+    }
+
+    {
+      "id": "hoda",
+      "age": 26,
+      "gender": "F",
+      "diseases": ["Diabetes"]
+    }
+  ],
+  "reports": [
+    {
+      "id": 1,
+      "long": 30.0102958,
+      "lat": 30.9844491,
+      "symptoms": ["Itchy Eye", "Sneezing"],
+      "weather": {
+        "temperature": 23,
+        "humidity": 70,
+        "pressure": 1030
+      }
+    },
+    {
+      "id": 2,
+      "long": 31.0628372,
+      "lat": 31.3335353,
+      "symptoms": ["Sneezing", "Coughing", "Fever"],
+      "weather": {
+        "temperature": 15,
+        "humidity": 89,
+        "pressure": 1012
+      }
+    }
+  ]
+
+}

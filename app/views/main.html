@@ -1,0 +1,382 @@
+<!-- <a ng-click="open('#reportModal')" data-target="reportModal" class="btn-floating btn-large waves-effect waves-light cyan darken-3 right modal-trigger"><i class="material-icons">add</i></a> -->
+
+<!-- the nav -->
+<nav class="nav-no-bg container">
+  <ul class="right hide-on-med-and-down">
+    <li><a href ng-click="open('#travelModal')" data-target="travelModal" class="modal-trigger title"><i class="material-icons">&#xE539;</i> Travel</a></li>
+    <li><a href ng-click="open('#signInModal')" data-target="signInModal" class="modal-trigger title"><i class="material-icons">&#xE7FD;</i> Sign In</a></li>
+
+    <!-- user Info -->
+    <!-- <li>
+
+      <ul id="dropdown1" class="dropdown-content user-dropdown">
+        <li><a href  data-target="profileModal" class="modal-trigger title">Profile</a></li>
+        <li><a href ng-click="open('#settingModal')">Setting</a></li>
+        <li><a href>Log Out</a></li>
+      </ul>
+      <a class="dropdown-button" href="#!" data-activates="dropdown1"> <img src="images/yeoman.png" alt="" class="circle responsive-img user-pic"> Heba <i class="mdi-navigation-arrow-drop-down right"></i></a>
+    </li> -->
+
+</nav>
+
+<!-- map view  -->
+<!-- <div id="map" class="map" ng-view="largeMap()"></div> -->
+<div id="map" class="map"></div>
+<script type="text/javascript">
+  var map = new ol.Map({
+    target: 'map',
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.MapQuest({layer: 'sat'})
+      })
+    ],
+    view: new ol.View({
+      center: ol.proj.fromLonLat([37.41, 8.82]),
+      zoom: 4
+    })
+  });
+</script>
+
+
+<!-- add Report trigger -->
+<a ng-click="open('#reportModal')" data-target="reportModal" class="btn-floating btn-large waves-effect waves-light cyan darken-3 right modal-trigger"><i class="material-icons">add</i></a>
+
+<!-- report modal -->
+  <div id="reportModal" class="modal" modal="reportModal">
+    <a href="#!" class="secondary-content" ng-click="close(reportModal)"><i class="small mdi-action-highlight-remove"></i></a>
+
+      <div class="modal-Container" ng-hide="createAccount">
+        <!-- modal content -->
+        <div class="modal-content center">
+          <h4>Report</h4>
+          <p>Share with us the current air state</p>
+
+              <!-- signIn form -->
+              <form class="col s12">
+
+                  <div class="row">
+                        <div class="input-field col m6 s12 offset-m3">
+                            <input id="reportLocation" type="text" class="validate">
+                            <label for="reportLocation" ng-disabled="checked">Location</label>
+                            <!-- <p>
+                              {{user.fName}}
+                            </p> -->
+                        </div>
+                        <div class="input-field col m4 s12 offset-m5">
+                          <div class="switch" id="enabled" name="enabled" ng-model="enabled">
+                            <label>
+                              Automatic
+                              <input type="checkbox">
+                              <span class="lever" ng-model="checked"></span>
+                              Manual
+                            </label>
+                          </div>
+
+                          <switch id="enabled" name="enabled" ng-model="enabled" on="On" off="Off" class="green"></switch>
+                             <br>{{ enabled }}
+                        </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="input-field col m6 s12 offset-m3">
+
+                          <p>
+
+                            <input type="checkbox" id="difficultyBreathing" class="syptoms"/>
+                            <label for="difficultyBreathing" ng-click="difficultyBreathingToggle()">Difficulty Breathing</label>
+                              <div class="rangs" ng-show="difficultyBreathing" >
+                                  <p>
+                                    <input name="breathingrangs" type="radio" id="breathingSever" />
+                                    <label for="breathingSever">Sever</label>
+                                  </p>
+                                  <p>
+                                    <input name="breathingrangs" type="radio" id="breathingIntermediate" />
+                                    <label for="breathingIntermediate">Intermediate</label>
+                                  </p>
+                                  <p>
+                                    <input name="breathingrangs" type="radio" id="breathingLight" />
+                                    <label for="breathingLight">Light</label>
+                                  </p>
+
+
+                              </div>
+                          </p>
+                          <p>
+                            <input type="checkbox" id="itchyEye" />
+                            <label for="itchyEye" ng-click="itchyEyeToggle()">Itchy Eye</label>
+                            <div class="rangs" ng-show="itchyEye">
+                                <p>
+                                  <input name="itchyEyerangs" type="radio" id="itchySever" />
+                                  <label for="itchySever">Sever</label>
+                                </p>
+                                <p>
+                                  <input name="itchyEyerangs" type="radio" id="itchyIntermediate" />
+                                  <label for="itchyIntermediate">Intermediate</label>
+                                </p>
+                                <p>
+                                  <input name="itchyEyerangs" type="radio" id="itchyLight" />
+                                  <label for="itchyLight">Light</label>
+                                </p>
+                            </div>
+                          </p>
+                          <p>
+                            <input type="checkbox" id="sneezing" />
+                            <label for="sneezing" ng-click="sneezingToggle()">Sneezing</label>
+                            <div class="rangs" ng-show="sneezing" ng-hide="!sneezing">
+                                <p>
+                                  <input name="sneezingrangs" type="radio" id="sneezingSever" />
+                                  <label for="sneezingSever">Sever</label>
+                                </p>
+                                <p>
+                                  <input name="sneezingrangs" type="radio" id="sneezingIntermediate" />
+                                  <label for="sneezingIntermediate">Intermediate</label>
+                                </p>
+                                <p>
+                                  <input name="sneezingrangs" type="radio" id="sneezingLight" />
+                                  <label for="sneezingLight">Light</label>
+                                </p>
+                            </div>
+                          </p>
+                          <p>
+                            <input type="checkbox" id="coughing" />
+                            <label for="coughing" ng-click="coughingToggle()">Coughing</label>
+                            <div class="rangs" ng-show="coughing" ng-hide="!coughing">
+                                <p>
+                                  <input name="coughingrangs" type="radio" id="coughingSever" />
+                                  <label for="coughingSever">Sever</label>
+                                </p>
+                                <p>
+                                  <input name="coughingrangs" type="radio" id="coughingIntermediate" />
+                                  <label for="coughingIntermediate">Intermediate</label>
+                                </p>
+                                <p>
+                                  <input name="coughingrangs" type="radio" id="coughingLight" />
+                                  <label for="coughingLight">Light</label>
+                                </p>
+                            </div>
+                          </p>
+                          <p>
+                            <input type="checkbox" id="fever" />
+                            <label for="fever" ng-click="feverToggle()">Fever</label>
+                            <div class="rangs" ng-show="fever" ng-hide="!fever" ng-disabled="!checked">
+                                <p>
+                                  <input name="feverrangs" type="radio" id="feverSever" />
+                                  <label for="feverSever">Sever</label>
+                                </p>
+                                <p>
+                                  <input name="feverrangs" type="radio" id="feverIntermediate" />
+                                  <label for="feverIntermediate">Intermediate</label>
+                                </p>
+                                <p>
+                                  <input name="feverrangs" type="radio" id="feverLight" />
+                                  <label for="feverLight">Light</label>
+                                </p>
+                            </div>
+                          </p>
+
+                          <p>
+                            <input type="checkbox" id="none" class="syptoms" />
+                            <label for="none">None</label>
+                          </p>
+                        </div>
+                  </div>
+
+        </div>
+
+        <!-- modal footer -->
+        <div class="center">
+
+           <button href="#!" class="modal-action btn btn-med waves-effect waves-light" type="submit" ng-click="addUser(user)" name="action">Sign In</button>
+
+            <div class="clearfix">
+                <p class="inline createAccount">Don't have an account? <a href class="createAccountLink" ng-click="createAccount=true">Create a free account</a> </p>
+            </div>
+
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- trevel modal -->
+    <div id="travelModal" class="modal" modal="travelModal">
+      <a href="#!" class="secondary-content" ng-click="close(travelModal)"><i class="small mdi-action-highlight-remove"></i></a>
+
+        <div class="modal-Container" ng-hide="createAccount">
+          <!-- modal content -->
+          <div class="modal-content center">
+            <h4>Travel</h4>
+            <p>Discover The Area !</p>
+
+                <!-- signIn form -->
+                <form class="col s12">
+
+                    <div class="row">
+                          <div class="input-field col m6 s12 offset-m3">
+                              <input id="travelFrom" type="text" class="validate" ng-model="user.travelFrom">
+                              <label for="travelFrom">From</label>
+                          </div>
+                    </div>
+
+                    <div class="row">
+                          <div class="input-field col m6 s12 offset-m3">
+                              <input id="travelTo" type="text" class="validate" ng-model="user.travelTo">
+                              <label for="travelTo">To</label>
+                          </div>
+                    </div>
+
+          </div>
+
+          <!-- modal footer -->
+          <div class="center">
+             <button href="#!" class="modal-action btn btn-med waves-effect waves-light" type="submit" ng-click="travel(data)" name="action">GO</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+
+
+
+
+
+<!-- sign in modal  -->
+<div id="signInModal" class="modal" modal="showModal">
+  <a href="#!" class="secondary-content" ng-click="close(signInModal)"><i class="small mdi-action-highlight-remove"></i></a>
+
+    <div class="modal-Container" ng-hide="createAccount">
+      <!-- modal content -->
+      <div class="modal-content center">
+        <h4>Sign In</h4>
+        <!-- <p>Help Us to know more about you.</p> -->
+
+                <!-- signIn form -->
+            <form class="col s12">
+
+                <div class="row">
+                      <div class="input-field col m6 s12 offset-m3">
+                          <input id="email" type="email" class="validate" ng-model="user.email">
+                          <label for="email">Email</label>
+                          <p>
+                            {{user.fName}}
+                          </p>
+                      </div>
+                </div>
+
+                <div class="row">
+                      <div class="input-field col m6 s12 offset-m3">
+                          <input id="pass" type="password" class="validate" ng-model="user.pass">
+                          <label for="pass">Password</label>
+                          <p>
+                            {{user.pass}}
+                          </p>
+                          <a href="#" class="forgetPass">Forgot your password?</a>
+                      </div>
+                </div>
+
+      </div>
+
+      <!-- modal footer -->
+      <div class="center">
+
+         <button href="#!" class="modal-action btn btn-med waves-effect waves-light" type="submit" ng-click="addUser(user)" name="action">Sign In</button>
+
+          <div class="clearfix">
+              <p class="inline createAccount">Don't have an account? <a href class="createAccountLink" ng-click="createAccount=true">Create a free account</a> </p>
+          </div>
+
+
+        <!-- the submit button close the modal -->
+        <!-- <button href="#!" class="modal-action modal-close btn btn-large waves-effect waves-light" type="button" name="action">Sign In</button> -->
+      </div>
+    </div>
+
+  </form>
+
+  <div class="modal-Container" ng-show="createAccount">
+    <div class="modal-content center">
+      <h4>Sign Up</h4>
+      <p>Help us to Know more about you//////</p>
+
+      <!-- signUp form -->
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col m6 s12">
+                <input id="first_name" type="text" class="validate" required>
+                <label for="first_name">First Name</label>
+            </div>
+
+            <div class="input-field col m6 s12">
+                <input id="last_name" type="text" class="validate" required>
+                <label for="last_name">Last Name</label>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- <div class="input-field col m6 s12">
+                <input id="user_name" type="text" class="validate" required>
+                <label for="user_name">User Name</label>
+            </div> -->
+            <div class="input-field col m6 s12">
+                <input id="email" type="email" class="validate" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-field col m6 s12">
+                <input id="pass" type="password" class="validate" required>
+                <label for="pass">Password</label>
+            </div>
+          </div>
+
+        </div>
+        <!-- modal footer -->
+        <div class="center">
+          <button href="#!" class="modal-action btn btn-med waves-effect waves-light" type="submit" ng-click="addUser(user)" name="action">Sign Up</button>
+        </div>
+      </form>
+  </div>
+
+</div>
+
+
+<!-- profile modal -->
+  <div id="profileModal" class="modal" modal="profileModal">
+    <a href="#!" class="secondary-content" ng-click="close(profileModal)"><i class="small mdi-action-highlight-remove"></i></a>
+
+      <div class="modal-Container">
+        <!-- modal content -->
+        <div class="modal-content center">
+          <h4>Travel</h4>
+          <p>Discover The Area !</p>
+
+              <!-- signIn form -->
+              <form class="col s12">
+
+                  <div class="row">
+                        <div class="input-field col m6 s12 offset-m3">
+                            <input id="travelFrom" type="text" class="validate" ng-model="user.travelFrom">
+                            <label for="travelFrom">From</label>
+                        </div>
+                  </div>
+
+                  <div class="row">
+                        <div class="input-field col m6 s12 offset-m3">
+                            <input id="travelTo" type="text" class="validate" ng-model="user.travelTo">
+                            <label for="travelTo">To</label>
+                        </div>
+                  </div>
+
+        </div>
+
+        <!-- modal footer -->
+        <div class="center">
+           <button href="#!" class="modal-action btn btn-med waves-effect waves-light" type="submit" ng-click="travel(data)" name="action">GO</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>

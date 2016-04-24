@@ -1,0 +1,43 @@
+<!-- the nav -->
+<nav class="nav-no-bg container">
+  <ul class="right hide-on-med-and-down">
+    <li><a href ng-click="open('#travelModal')" data-target="travelModal" class="modal-trigger title"><i class="material-icons">&#xE539;</i> Travel</a></li>
+    <!-- <li><a href ng-click="open('#signInModal')" data-target="signInModal" class="modal-trigger title"><i class="material-icons">&#xE7FD;</i> Sign In</a></li> -->
+
+    <!-- user Info -->
+    <li>
+      <ul id="dropdown1" class="dropdown-content user-dropdown">
+        <li><a href="#/profile"  data-target="profileModal" class="modal-trigger title">Profile</a></li>
+        <li><a href ng-click="open('#settingModal')">Setting</a></li>
+        <li><a href="#!">Log Out</a></li>
+      </ul>
+      <a class="dropdown-button" href data-activates="dropdown1"> <img src="images/yeoman.png" alt="" class="circle responsive-img user-pic"> Heba <i class="mdi-navigation-arrow-drop-down right"></i></a>
+    </li>
+<!-- class="active" -->
+</nav>
+
+<div class="" ng-controller="profileCtrl">
+  <ul class="tabs cyan darken-3">
+        <li class="tab col s3"><a href ng-click="profileTab()">Profile</a></li>
+        <li class="tab col s3"><a href ng-click="settingTab()">setting</a></li>
+
+      </ul>
+
+        <div id="test1" class="col s12" ng-show="profile"  ng-hide="setting">Inbox</div>
+        <div id="test2" class="col s12" ng-show="setting" ng-hide="profile">Unread</div>
+
+        <!-- <ul class="right hide-on-med-and-down">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Dropdown<i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a href="#!">First</a></li>
+        <li><a href="#!">Second</a></li>
+        <li><a href="#!">Third</a></li>
+        <li><a href="#!">Fourth</a></li>
+      </ul>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a> -->
+
+
+</div>
